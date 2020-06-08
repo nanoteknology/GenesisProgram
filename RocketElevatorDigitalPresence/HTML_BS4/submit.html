@@ -207,7 +207,7 @@
 				<option value="hybrid">hybrid</option>
 			</select>
 			<br><br><br>
-			<!-- DIV FOR EACH OPTION INSIDE DROPDOWN MENU-->
+<!-- DIV FOR RESIDENTIAL SECTION-->
 			 <div id="residential" class="building_type" >
 			<!-- FIRST QUESTIONS || # of Appartments, Floors , Basements-->
 				<div class="row">
@@ -264,41 +264,58 @@
 						-->
 					</div>
 				</div>
-				<!-- OUTPUT ANSWERS-->
+			</div>
+<!-- DIV FOR COMMERCIAL SECTION-->
+			<div id="commercial" class="building_type" >
+			<!-- FIRST QUESTIONS || # of Appartments, Floors , Basements etc-->
+				<div class="row">
+					<div class="col-md-4">
+						<!-- Placeholder Commercial # of Business "com:business"-->
+						<label for="com:business">Number of Business in the building *</label>
+						<input required type="number" value="" class="form-control" name="com[business][required]" id="com:business">
+						<!-- Placeholder Commercial # Parking slots "com:parking"-->
+						<label for="com:business">Number of Parking slot *</label>
+						<input required type="number" value="" class="form-control" name="com[parking][required]" id="com:parking">
+						<br>
+					</div>
+					<div class="col-md-4">
+						<!-- Placeholder Commercial # of Floors "com:floor"-->
+						<label for="com:floor">Number of floors *</label>
+						<input required type="number" value="" class="form-control" name="com[floor][required]" id="com:floor">
+						<!-- Placeholder Commercial # of Elevator Cages "com:cage"-->
+						<label for="com:business">Number of Elevators Cages needed *</label>
+						<input required type="number" value="" class="form-control" name="com[cage][required]" id="com:cage">
+						<br>
+						<br>
+					</div>
+					<div class="col-md-4">
+						<!-- Placeholder Commercial # of Basements "com:basement"-->
+						<label for="com:basement">Number of basements *</label>
+						<input type="number" value="" class="form-control" name="com[basement][required]" id="com:basement">
+						<br>
+					</div>
+					
+				</div>
+				<!-- RADIO MENU === SERVICE TYPE-->
 				<div class="row">
 					<div class="col-md-4"></div>
-					<div class="col-md-4">
-				<!-- THE ANSWER Cage Elevator-->
-						<div class="box">
-							<div class="log"><strong>Number of Cage Elevators required: </strong>				
-								<div id="answerCage" style="float:right"></div>	
-							</div>
-				<!-- THE ANSWER Service Type-->
-						<div class="log"><strong>Type of Service:  </strong>				
-							<div id="answerServiceType" style="float:right"></div>	
-						</div>
-				<!-- SERVICE SERVICE COST TYPE-->
-						<div class="log"><strong>Price for the selected service (per elevator): </strong>				
-							<div id="answerServicePrice" style="float:right"></div>	
-						</div>
-				<!-- SERVICE SERVICE COST TOTAL TYPE-->
-						<div class="log"><strong>Elevators Price: </strong>				
-							<div id="answerServicePricetotal" style="float:right"></div>	
-						</div>
-				<!-- SERVICE INSTALLATION FEES TYPE-->
-				<div class="log"><strong>Installation Fees: </strong>				
-					<div id="answerInstallationFees" style="float:right"></div>	
-				</div>
-				<!-- INSTALLATION COST-->
-						<div class="log"><strong>Installation Price (with %fees) </strong>				
-							<div id="answerInstallationCost" style="float:right"></div>	
-						</div>
+					<div class="col-md-4" style="text-align: center">
+						<!--<form action="/action_page.php">-->
+						<br>
+						<!-- TEST-->
+						<p>Type of Services:</p>
+						<form name = "f1"> <!-- the "this" in GetSelectedItem(this) is the input -->
+							<input type = "radio" Name = "r1" Value = "Standard" onClick="GetSelectedItem(this)">Standard
+							<input type = "radio" Name = "r1" Value = "Premium" onClick ="GetSelectedItem(this)">Premium
+							<input type = "radio" Name = "r1" Value = "Excelium" onClick ="GetSelectedItem(this)">Excelium
+						</form>
+						<div id="output"></div>
+						<br><br>
+						<button class="btn btn-success" type="submit" onclick="getInputValue()">SUBMIT</button>
+						<br><br>
 					</div>
 				</div>
-			</div>
-			
-			<div id="commercial" class="building_type" >
-			   commercial form
+
 			</div>
 			<div id="corporate" class="building_type" >
 				corporate form
@@ -307,6 +324,39 @@
 				hybrid form
 			 </div>
 
+			 <!-- OUTPUT ANSWERS-->
+			 <div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+			<!-- THE ANSWER BOX-->
+					<div class="box">
+			<!-- THE ANSWER Elevator Cages-->
+						<div class="log"><strong>Number of Cage Elevators required: </strong>				
+							<div id="answerCage" style="float:right"></div>	
+						</div>
+			<!-- THE ANSWER Service Type-->
+						<div class="log"><strong>Type of Service:  </strong>				
+							<div id="answerServiceType" style="float:right"></div>	
+						</div>
+			<!-- SERVICE SERVICE COST TYPE-->
+						<div class="log"><strong>Price for the selected service (per elevator): </strong>				
+							<div id="answerServicePrice" style="float:right"></div>	
+						</div>
+			<!-- SERVICE SERVICE COST TOTAL TYPE-->
+						<div class="log"><strong>Elevators Price: </strong>				
+							<div id="answerServicePricetotal" style="float:right"></div>	
+						</div>
+			<!-- SERVICE INSTALLATION FEES TYPE-->
+						<div class="log"><strong>Installation Fees: </strong>				
+							<div id="answerInstallationFees" style="float:right"></div>	
+						</div>
+				<!-- INSTALLATION COST-->
+						<div class="log"><strong>Installation Price (with %fees) </strong>				
+							<div id="answerInstallationCost" style="float:right"></div>	
+						</div>
+					</div>
+				</div>
+			</div>
 			
 			<!-- FOOTER -->
 			<footer id="footer">
@@ -397,7 +447,7 @@
 
 		<!-- PAGELEVEL SCRIPTS -->
 		<script src="assets/js/contact.js"></script>
-		<!-- scriptt for submissions-->
+		<!-- script for submissions-->
 		<script src="assets/js/quote.js"></script>
 		<!-- 
 			GMAP.JS 
@@ -431,13 +481,21 @@
 		</script>
 		-->
 		<script  type="text/javascript">
-			// Grab the output eleent
+			// RESIDENTIAL DIV
 			var resiAppart;
 			var resiFloor;
 			var resiBasement;
+			var cageNum = 0; // USED BY THE RADIO BUTTON FUNCTION TO DETERMINE IF THE NUMBER OF FLOORS HAS BEEN ENTERED
+			// COMMERCIAL DIV
+			var comBusiness;
+			var comFloor;
+			var comBasement;
+			var comParking;
+			var comCageNum = 0; // USED BY THE RADIO BUTTON FUNCTION TO DETERMINE IF THE NUMBER OF ELEVATOR CAGE HAS BEEN ENTERED
+
 			var serType;
 			var servicePrice;
-			var resiCageNum = 0;
+
 			var installationCostPer;
 			var installationCostFees;
 			var resiElevatorPrice;
@@ -450,7 +508,7 @@
 				   output.innerHTML = el.value; // set its content to the value of the "el"
 				   answerServiceType.innerHTML = el.value;
 				   serType = el.value;
-				// SETTING SERVICE PRICE AND INSTALLATION PERSENT COST-->   
+				// SETTING SERVICE PRICE AND INSTALLATION PERCENT COST-->   
 					
 					if(serType === "Standard"){
 						servicePrice = 7565;
@@ -467,52 +525,64 @@
 						installationCostPer = 16;
 						answerServicePrice.innerHTML = servicePrice;
 					}
-					
-					if(resiCageNum === 0){ 
+					if(cageNum === 0){ 
+						// MEANS NO VALUE HAS BEEN DETERMINED FOR THE CAGE NUMBER YET
+						// THE SUBMIT BUTTON CLICK FUNCTION MUST RUN ONCE BEFORE
 						return;
 					} else {
-			// UPDATING DYNAMICALY RADIO BUTTON
+				// UPDATING ANSWER BOX DYNAMICALLY WITH THE INFOS ENTERED
+				// Selecting the input element and get its value || RESIDENTIAL DIV
+					resiAppart = document.getElementById("resi:appart").value;
+					resiFloor = document.getElementById("resi:floor").value;
+					resiBasement = document.getElementById("resi:basement").value;
+				
+									
+				// Displaying the value
+				// Calculate overall # of Appartements by Floor divided by 6 to obtain the number of Elevator cages required
+				// Number of cage required **** NEED TO ROUND it
+					cageNum = (+resiAppart / +resiFloor) / 6;
+						answerCage.innerHTML = cageNum;
+				// ELEVATORCOST = PRICETYPE * NUM ELEVATORS
+					resiElevatorPrice = (+servicePrice * +cageNum);
+					answerServicePricetotal.innerHTML = resiElevatorPrice;
+				// INSTALLATION COST FEES
+					installationCostFees = (+servicePrice * +cageNum) * +installationCostPer / 100;
+					answerInstallationFees.innerHTML = installationCostFees;
+				// TOTAL PRICE
+					installationTotal = installationCostFees + (+servicePrice * +cageNum);
+					answerInstallationCost.innerHTML = installationTotal;		
+					}
+	   		}
+			// FUNCTION ON SUBMIT BUTTON CLICK
+			function getInputValue(){
 			// Selecting the input element and get its value 
+			// for the RESIDENTIAL DIV
 				resiAppart = document.getElementById("resi:appart").value;
 				resiFloor = document.getElementById("resi:floor").value;
 				resiBasement = document.getElementById("resi:basement").value;
 				
-								
+			// for the COMMERCIAL DIV
+			/*	comBusiness = document.getElementById("com:business").value;
+				comFloor = document.getElementById("com:floor").value;
+				comBasement = document.getElementById("com:basement").value;
+				comParking = document.getElementById("com:parking").value;
+				comCage = document.getElementById("com:cage").value;
+				*/
 			// Displaying the value
 			// Calculate overall # of Appartements by Floor divided by 6 to obtain the number of Elevator cages required
 			// Number of cage required **** NEED TO ROUND it
-				resiCageNum = (+resiAppart / +resiFloor) / 6;
-					answerCage.innerHTML = resiCageNum;
+				cageNum = (+resiAppart / +resiFloor) / 6;
+				alert(cageNum);
+				answerCage.innerHTML = cageNum;
 			// ELEVATORCOST = PRICETYPE * NUM ELEVATORS
-				resiElevatorPrice = (+servicePrice * +resiCageNum);
+				resiElevatorPrice = (+servicePrice * +cageNum);
 				answerServicePricetotal.innerHTML = resiElevatorPrice;
+				alert(resiElevatorPrice);
 			// INSTALLATION COST FEES
-				installationCostFees = (+servicePrice * +resiCageNum) * +installationCostPer / 100;
+				installationCostFees = (+servicePrice * +cageNum) * +installationCostPer / 100;
 				answerInstallationFees.innerHTML = installationCostFees;
 			// TOTAL PRICE
-				installationTotal = installationCostFees + (+servicePrice * +resiCageNum);
-				answerInstallationCost.innerHTML = installationTotal;		
-					}
-	   		}
-   		
-			function getInputValue(){
-			// Selecting the input element and get its value 
-				resiAppart = document.getElementById("resi:appart").value;
-				resiFloor = document.getElementById("resi:floor").value;
-				resiBasement = document.getElementById("resi:basement").value;
-			// Displaying the value
-			// Calculate overall # of Appartements by Floor divided by 6 to obtain the number of Elevator cages required
-			// Number of cage required **** NEED TO ROUND it
-				resiCageNum = (+resiAppart / +resiFloor) / 6;
-				answerCage.innerHTML = resiCageNum;
-			// ELEVATORCOST = PRICETYPE * NUM ELEVATORS
-				resiElevatorPrice = (+servicePrice * +resiCageNum);
-				answerServicePricetotal.innerHTML = resiElevatorPrice;
-			// INSTALLATION COST FEES
-				installationCostFees = (+servicePrice * +resiCageNum) * +installationCostPer / 100;
-				answerInstallationFees.innerHTML = installationCostFees;
-			// TOTAL PRICE
-				installationTotal = installationCostFees + (+servicePrice * +resiCageNum);
+				installationTotal = installationCostFees + (+servicePrice * +cageNum);
 				answerInstallationCost.innerHTML = installationTotal;		
 				
 			}
