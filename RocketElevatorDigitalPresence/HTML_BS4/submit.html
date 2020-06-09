@@ -209,28 +209,26 @@
 			<br><br><br>
 <!-- DIV FOR RESIDENTIAL SECTION-->
 			 <div id="residential" class="building_type">
-			<!-- FIRST QUESTIONS || # of Appartments, Floors , Basements-->
+				<!-- QUESTIONS || # of Appartments, Floors , Basements-->
 				<div class="row">
 					<div class="col-md-4">
-						<!-- Placeholder Residential # of Appartments "resi:appart"-->
+						<!-- Residential # of Appartments "resi:appart"-->
 						<label for="resi:appart">Number of Appartments *</label>
 						<input required type="number" value="" class="form-control" name="resi[appart][required]" id="resi:appart">
 						<br>
 					</div>
 					<div class="col-md-4">
-						<!-- Placeholder Residential # of Floors "resi:floor"-->
+						<!-- Residential # of Floors "resi:floor"-->
 						<label for="resi:floor">Number of floors *</label>
 						<input required type="number" value="" class="form-control" name="resi[floor][required]" id="resi:floor">
-						
 						<br>
 					</div>
 					<div class="col-md-4">
-						<!-- Placeholder Residential # of Basements "resi:basement"-->
+						<!-- Residential # of Basements "resi:basement"-->
 						<label for="resi:basement">Number of basements *</label>
 						<input type="number" value="" class="form-control" name="resi[basement][required]" id="resi:basement">
 						<br>
 					</div>
-					
 				</div>
 				<!-- RADIO MENU === SERVICE TYPE-->
 				<div class="row">
@@ -245,40 +243,38 @@
 							<input type = "radio" Name = "r1" Value = "Premium" onClick ="GetSelectedItem(this)">Premium
 							<input type = "radio" Name = "r1" Value = "Excelium" onClick ="GetSelectedItem(this)">Excelium
 						</form>
-						
 						<div id="output"></div>
 						<br>
-						<button class="btn btn-success" type="submit" onclick="getInputValue()">SUBMIT</button>
+						<button class="btn btn-success" type="submit" onclick="getInputValue(1)">SUBMIT</button>
 						<br><br>
 					</div>
 				</div>
-				
 			</div>
-<!-- DIV FOR COMMERCIAL SECTION-->
+			<!-- DIV FOR COMMERCIAL SECTION-->
 			<div id="commercial" class="building_type">
-			<!-- FIRST QUESTIONS || # of Appartments, Floors , Basements etc-->
+				<!-- QUESTIONS || # of Appartments, Floors , Basements etc-->
 				<div class="row">
 					<div class="col-md-4">
-						<!-- Placeholder Commercial # of Business "com:business"-->
+						<!-- Commercial # of Business "com:business"-->
 						<label for="com:business">Number of Business in the building *</label>
 						<input required type="number" value="" class="form-control" name="com[business][required]" id="com:business">
-						<!-- Placeholder Commercial # Parking slots "com:parking"-->
-						<label for="com:business">Number of Parking slot *</label>
+						<!-- Commercial # Parking slots "com:parking"-->
+						<label for="com:parking">Number of Parking slot *</label>
 						<input required type="number" value="" class="form-control" name="com[parking][required]" id="com:parking">
 						<br>
 					</div>
 					<div class="col-md-4">
-						<!-- Placeholder Commercial # of Floors "com:floor"-->
+						<!-- Commercial # of Floors "com:floor"-->
 						<label for="com:floor">Number of floors *</label>
 						<input required type="number" value="" class="form-control" name="com[floor][required]" id="com:floor">
-						<!-- Placeholder Commercial # of Elevator Cages "com:cage"-->
-						<label for="com:business">Number of Elevators Cages needed *</label>
+						<!-- Commercial # of Elevator Cages "com:cage"-->
+						<label for="com:cage">Number of Elevators Cages needed *</label>
 						<input required type="number" value="" class="form-control" name="com[cage][required]" id="com:cage">
 						<br>
 						<br>
 					</div>
 					<div class="col-md-4">
-						<!-- Placeholder Commercial # of Basements "com:basement"-->
+						<!-- Commercial # of Basements "com:basement"-->
 						<label for="com:basement">Number of basements *</label>
 						<input type="number" value="" class="form-control" name="com[basement][required]" id="com:basement">
 						<br>
@@ -289,9 +285,7 @@
 				<div class="row">
 					<div class="col-md-4"></div>
 					<div class="col-md-4" style="text-align: center">
-						<!--<form action="/action_page.php">-->
 						<br>
-						<!-- TEST-->
 						<p>Type of Services:</p>
 						<form name = "f1"> <!-- the "this" in GetSelectedItem(this) is the input -->
 							<input type = "radio" Name = "r1" Value = "Standard" onClick="GetSelectedItem(this)">Standard
@@ -300,22 +294,18 @@
 						</form>
 						<div id="output"></div>
 						<br>
-						<button class="btn btn-success" type="submit" onclick="getInputValue()">SUBMIT</button>
+						<button class="btn btn-success" type="submit" onclick="getInputValue(2)">SUBMIT</button>
 						<br><br>
-
 					</div>
 				</div>
-				
-				</div>
-
 			</div>
 			<div id="corporate" class="building_type" >
 				corporate form
-			 </div>
-			 <div id="hybrid" class="building_type" >
+			</div>
+			<div id="hybrid" class="building_type" >
 				hybrid form
-			 </div>
-			 <div class="row">
+			</div>
+			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="box">
@@ -544,26 +534,36 @@
 					}
 	   		}
 			// FUNCTION ON SUBMIT BUTTON CLICK
-			function getInputValue(){
-			// Selecting the input element and get its value 
-			// for the RESIDENTIAL DIV
-				resiAppart = document.getElementById("resi:appart").value;
-				resiFloor = document.getElementById("resi:floor").value;
-				resiBasement = document.getElementById("resi:basement").value;
-				
-			// for the COMMERCIAL DIV
-			/*	comBusiness = document.getElementById("com:business").value;
-				comFloor = document.getElementById("com:floor").value;
-				comBasement = document.getElementById("com:basement").value;
-				comParking = document.getElementById("com:parking").value;
-				comCage = document.getElementById("com:cage").value;
-				*/
+			function getInputValue(x){
+			// Selecting the input element and get its value
+
 			// Displaying the value
 			// Calculate overall # of Appartements by Floor divided by 6 to obtain the number of Elevator cages required
 			// Number of cage required **** NEED TO ROUND it
-				cageNum = (+resiAppart / +resiFloor) / 6;
-				alert(cageNum);
-				answerCage.innerHTML = cageNum;
+
+			switch(x){
+				// 1 for the RESIDENTIAL DIV
+				case 1:
+					resiAppart = document.getElementById("resi:appart").value;
+					resiFloor = document.getElementById("resi:floor").value;
+					resiBasement = document.getElementById("resi:basement").value;
+					cageNum = (+resiAppart / +resiFloor) / 6;
+					alert(resiFloor);
+					answerCage.innerHTML = cageNum;
+					break;
+				// 2 for the COMMERCIAL DIV
+				case 2:
+					comBusiness = document.getElementById("com:business").value;
+					comFloor = document.getElementById("com:floor").value;
+					comBasement = document.getElementById("com:basement").value;
+					comParking = document.getElementById("com:parking").value;
+					comCage = document.getElementById("com:cage").value;
+					cageNum = comCage;
+					alert(cageNum);
+					answerCage.innerHTML = cageNum;
+					break;
+			}
+							
 			// ELEVATORCOST = PRICETYPE * NUM ELEVATORS
 				resiElevatorPrice = (+servicePrice * +cageNum);
 				answerServicePricetotal.innerHTML = resiElevatorPrice;
