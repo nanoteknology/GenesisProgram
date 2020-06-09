@@ -239,11 +239,11 @@
 						<!-- TEST-->
 						<p>Type of Services:</p>
 						<form name = "f1"> <!-- the "this" in GetSelectedItem(this) is the input -->
-							<input type = "radio" Name = "r1" Value = "Standard" onClick="GetSelectedItem(this)">Standard
-							<input type = "radio" Name = "r1" Value = "Premium" onClick ="GetSelectedItem(this)">Premium
-							<input type = "radio" Name = "r1" Value = "Excelium" onClick ="GetSelectedItem(this)">Excelium
+							<input type = "radio" Name = "r1" Value = "Standard" onClick="GetSelectedItem(this, 1)">Standard
+							<input type = "radio" Name = "r1" Value = "Premium" onClick ="GetSelectedItem(this, 1)">Premium
+							<input type = "radio" Name = "r1" Value = "Excelium" onClick ="GetSelectedItem(this, 1)">Excelium
 						</form>
-						<div id="output"></div>
+						<div id="output1"></div>						
 						<br>
 						<button class="btn btn-success" type="submit" onclick="getInputValue(1)">SUBMIT</button>
 						<br><br>
@@ -287,12 +287,12 @@
 					<div class="col-md-4" style="text-align: center">
 						<br>
 						<p>Type of Services:</p>
-						<form name = "f1"> <!-- the "this" in GetSelectedItem(this) is the input -->
-							<input type = "radio" Name = "r1" Value = "Standard" onClick="GetSelectedItem(this)">Standard
-							<input type = "radio" Name = "r1" Value = "Premium" onClick ="GetSelectedItem(this)">Premium
-							<input type = "radio" Name = "r1" Value = "Excelium" onClick ="GetSelectedItem(this)">Excelium
+						<form name = "f1"> <!-- the "this" in GetSelectedItem(this) is the input || 2 for Commercial -->
+							<input type = "radio" Name = "r1" Value = "Standard" onClick="GetSelectedItem(this, 2)">Standard
+							<input type = "radio" Name = "r1" Value = "Premium" onClick ="GetSelectedItem(this, 2)">Premium
+							<input type = "radio" Name = "r1" Value = "Excelium" onClick ="GetSelectedItem(this, 2)">Excelium
 						</form>
-						<div id="output"></div>
+						<div id="output2"></div>
 						<br>
 						<button class="btn btn-success" type="submit" onclick="getInputValue(2)">SUBMIT</button>
 						<br><br>
@@ -309,6 +309,7 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="box">
+						<!-- THE ANSWER BOX-->
 						<!-- THE ANSWER Elevator Cages-->
 						<div class="log"><strong>Number of Cage Elevators required: </strong>				
 							<div id="answerCage" style="float:right"></div>	
@@ -481,14 +482,28 @@
 			var resiElevatorPrice;
 			var installationTotal;
 
-			var output = document.getElementById('output');
+			//var output = document.getElementById("output").value;
    
 		  	// "el" is the parameter that references the "this" argument that was passed
-			function GetSelectedItem(el) {
-				   output.innerHTML = el.value; // set its content to the value of the "el"
-				   answerServiceType.innerHTML = el.value;
-				   serType = el.value;
-				// SETTING SERVICE PRICE AND INSTALLATION PERCENT COST-->   
+			function GetSelectedItem(el,x){
+					switch(x){
+						case 1:
+						output1.innerHTML = el.value; // set its content to the value of the "el"
+						break;
+						case 2:
+						output2.innerHTML = el.value; // set its content to the value of the "el"
+						break;
+						case 3:
+						output3.innerHTML = el.value; // set its content to the value of the "el"
+						break;
+						case 4:
+						output4.innerHTML = el.value; // set its content to the value of the "el"
+						break;
+					}
+					
+					answerServiceType.innerHTML = el.value;
+					serType = el.value;
+					// SETTING SERVICE PRICE AND INSTALLATION PERCENT COST-->   
 					
 					if(serType === "Standard"){
 						servicePrice = 7565;
@@ -505,80 +520,81 @@
 						installationCostPer = 16;
 						answerServicePrice.innerHTML = servicePrice;
 					}
-					if(cageNum === 0 && comCageNum === 0){ 
+					if(cageNum === 0){ 
 						// MEANS NO VALUE HAS BEEN DETERMINED FOR THE CAGE NUMBER YET
 						// THE SUBMIT BUTTON CLICK FUNCTION MUST RUN ONCE BEFORE
+						alert(cageNum === 0);
 						return;
 					} else {
+						getInputValue(x);
 				// UPDATING ANSWER BOX DYNAMICALLY WITH THE INFOS ENTERED
 				// Selecting the input element and get its value || RESIDENTIAL DIV
-					resiAppart = document.getElementById("resi:appart").value;
+				/*	resiAppart = document.getElementById("resi:appart").value;
 					resiFloor = document.getElementById("resi:floor").value;
 					resiBasement = document.getElementById("resi:basement").value;
 				
-									
+								
 				// Displaying the value
 				// Calculate overall # of Appartements by Floor divided by 6 to obtain the number of Elevator cages required
 				// Number of cage required **** NEED TO ROUND it
 					cageNum = (+resiAppart / +resiFloor) / 6;
 						answerCage.innerHTML = cageNum;
-				// ELEVATORCOST = PRICETYPE * NUM ELEVATORS
-					resiElevatorPrice = (+servicePrice * +cageNum);
+				// ELEVATORCOST = PRICETYPE * NUM ELEVATORS*/
+				/*	resiElevatorPrice = (+servicePrice * +cageNum);
 					answerServicePricetotal.innerHTML = resiElevatorPrice;
 				// INSTALLATION COST FEES
 					installationCostFees = (+servicePrice * +cageNum) * +installationCostPer / 100;
 					answerInstallationFees.innerHTML = installationCostFees;
 				// TOTAL PRICE
 					installationTotal = installationCostFees + (+servicePrice * +cageNum);
-					answerInstallationCost.innerHTML = installationTotal;		
-					}
+					answerInstallationCost.innerHTML = installationTotal;
+				*/	
+					}		
+					
 	   		}
 			// FUNCTION ON SUBMIT BUTTON CLICK
 			function getInputValue(x){
-			// Selecting the input element and get its value
+				// Selecting the input element and get its value
 
-			// Displaying the value
-			// Calculate overall # of Appartements by Floor divided by 6 to obtain the number of Elevator cages required
-			// EVERY 20 FLOORS
+				// Displaying the value
+				// Calculate overall # of Appartements by Floor divided by 6 to obtain the number of Elevator cages required
+				// EVERY 20 FLOORS
 
-			switch(x){
-				// 1 for the RESIDENTIAL DIV
-				case 1:
-					resiAppart = document.getElementById("resi:appart").value;
-					resiFloor = document.getElementById("resi:floor").value;
-					resiBasement = document.getElementById("resi:basement").value;
-					var cageNeeded = Math.ceil((+resiAppart / +resiFloor) / 6);
-					alert(cageNeeded);
-					var resiColMultiplicator = Math.ceil(+resiFloor / 20);
-					var cageNum = Math.ceil(+cageNeeded * +resiColMultiplicator);
-					alert(resiColMultiplicator);
-					alert(cageNum);
-					answerCage.innerHTML = cageNum;
-					break;
-				// 2 for the COMMERCIAL DIV
-				case 2:
-					comBusiness = document.getElementById("com:business").value;
-					comFloor = document.getElementById("com:floor").value;
-					comBasement = document.getElementById("com:basement").value;
-					comParking = document.getElementById("com:parking").value;
-					comCageNum = document.getElementById("com:cage").value;
-					cageNum = comCageNum;
-					alert(cageNum);
-					answerCage.innerHTML = cageNum;
-					break;
-			}
-							
-			// ELEVATORCOST = PRICETYPE * NUM ELEVATORS
-				resiElevatorPrice = (+servicePrice * +cageNum);
-				answerServicePricetotal.innerHTML = resiElevatorPrice;
-				
-			// INSTALLATION COST FEES
-				installationCostFees = (+servicePrice * +cageNum) * +installationCostPer / 100;
-				answerInstallationFees.innerHTML = installationCostFees;
-			// TOTAL PRICE
-				installationTotal = installationCostFees + (+servicePrice * +cageNum);
-				answerInstallationCost.innerHTML = installationTotal;		
-				
+				switch(x){
+					// 1 for the RESIDENTIAL DIV || NUMBER OF CAGE REQUIRED
+					case 1:
+						resiAppart = document.getElementById("resi:appart").value;
+						alert(resiAppart);
+						resiFloor = document.getElementById("resi:floor").value;
+						resiBasement = document.getElementById("resi:basement").value;
+						var cageNeeded = Math.ceil((+resiAppart / +resiFloor) / 6);
+						var resiColMultiplicator = Math.ceil(+resiFloor / 20);
+						var cageNum = Math.ceil(+cageNeeded * +resiColMultiplicator);
+						answerCage.innerHTML = cageNum;
+						break;
+					// 2 for the COMMERCIAL DIV || NUMBER OF CAGE REQUIRED === NUMBER OF CAGE NEEDED
+					case 2:
+						comBusiness = document.getElementById("com:business").value;
+						comFloor = document.getElementById("com:floor").value;
+						comBasement = document.getElementById("com:basement").value;
+						comParking = document.getElementById("com:parking").value;
+						comCageNum = document.getElementById("com:cage").value;
+						cageNum = comCageNum;
+						answerCage.innerHTML = cageNum;
+						break;
+				}
+								
+				// ELEVATORCOST = PRICETYPE * NUM ELEVATORS
+					resiElevatorPrice = (+servicePrice * +cageNum);
+					answerServicePricetotal.innerHTML = resiElevatorPrice;
+					
+				// INSTALLATION COST FEES
+					installationCostFees = (+servicePrice * +cageNum) * +installationCostPer / 100;
+					answerInstallationFees.innerHTML = installationCostFees;
+				// TOTAL PRICE
+					installationTotal = installationCostFees + (+servicePrice * +cageNum);
+					answerInstallationCost.innerHTML = installationTotal;		
+					
 			}
 		</script>		
 	</body>
