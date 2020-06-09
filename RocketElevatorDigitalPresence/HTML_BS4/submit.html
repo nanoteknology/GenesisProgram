@@ -539,7 +539,7 @@
 
 			// Displaying the value
 			// Calculate overall # of Appartements by Floor divided by 6 to obtain the number of Elevator cages required
-			// Number of cage required **** NEED TO ROUND it
+			// EVERY 20 FLOORS
 
 			switch(x){
 				// 1 for the RESIDENTIAL DIV
@@ -547,8 +547,12 @@
 					resiAppart = document.getElementById("resi:appart").value;
 					resiFloor = document.getElementById("resi:floor").value;
 					resiBasement = document.getElementById("resi:basement").value;
-					cageNum = (+resiAppart / +resiFloor) / 6;
-					alert(resiFloor);
+					var cageNeeded = Math.ceil((+resiAppart / +resiFloor) / 6);
+					alert(cageNeeded);
+					var resiColMultiplicator = Math.ceil(+resiFloor / 20);
+					var cageNum = Math.ceil(+cageNeeded * +resiColMultiplicator);
+					alert(resiColMultiplicator);
+					alert(cageNum);
 					answerCage.innerHTML = cageNum;
 					break;
 				// 2 for the COMMERCIAL DIV
@@ -557,8 +561,8 @@
 					comFloor = document.getElementById("com:floor").value;
 					comBasement = document.getElementById("com:basement").value;
 					comParking = document.getElementById("com:parking").value;
-					comCage = document.getElementById("com:cage").value;
-					cageNum = comCage;
+					comCageNum = document.getElementById("com:cage").value;
+					cageNum = comCageNum;
 					alert(cageNum);
 					answerCage.innerHTML = cageNum;
 					break;
@@ -567,7 +571,7 @@
 			// ELEVATORCOST = PRICETYPE * NUM ELEVATORS
 				resiElevatorPrice = (+servicePrice * +cageNum);
 				answerServicePricetotal.innerHTML = resiElevatorPrice;
-				alert(resiElevatorPrice);
+				
 			// INSTALLATION COST FEES
 				installationCostFees = (+servicePrice * +cageNum) * +installationCostPer / 100;
 				answerInstallationFees.innerHTML = installationCostFees;
