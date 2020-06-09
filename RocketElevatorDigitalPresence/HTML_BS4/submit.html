@@ -299,8 +299,54 @@
 					</div>
 				</div>
 			</div>
+			<!-- DIV FOR CORPORATE BUILDING-->
 			<div id="corporate" class="building_type" >
-				corporate form
+				<!-- QUESTIONS || # of Appartments, Floors , Basements etc-->
+				<div class="row">
+					<div class="col-md-4">
+						<!-- CORPORATE number of separate tenant companies "corp:company"-->
+						<label for="corp:company">The number of separate tenant companies *</label>
+						<input required type="number" value="" class="form-control" name="corp[company][required]" id="corp:company">
+						<!-- CORPORATE number of floors "corp:floor"-->
+						<label for="corp:floor">Number of Floors *</label>
+						<input required type="number" value="" class="form-control" name="corp[floor][required]" id="corp:floor">
+						<br>
+					</div>
+					<div class="col-md-4">
+						<!-- CORPORATE number of Basements "corp:basement"-->
+						<label for="corp:basement">Number of basements *</label>
+						<input required type="number" value="" class="form-control" name="corp[basement][required]" id="corp:basement">
+						<!-- CORPORATE number of Parking Slots-->
+						<label for="corp:parking">Number of Parking Slot *</label>
+						<input required type="number" value="" class="form-control" name="corp[parking][required]" id="corp:parking">
+						<br>
+						<br>
+					</div>
+					<div class="col-md-4">
+						<!-- CORPORATE maximum number of occupants per floor corp:occupants-->
+						<label for="corp:occupants">Maximum number of occupants per floor *</label>
+						<input type="number" value="" class="form-control" name="corp[occupants][required]" id="corp:occupants">
+						<br>
+					</div>
+					
+				</div>
+				<!-- RADIO MENU === SERVICE TYPE-->
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4" style="text-align: center">
+						<br>
+						<p>Type of Services:</p>
+						<form name = "f1"> <!-- the "this" in GetSelectedItem(this) is the input || 3 for Corporate -->
+							<input type = "radio" Name = "r1" Value = "Standard" onClick="GetSelectedItem(this, 3)">Standard
+							<input type = "radio" Name = "r1" Value = "Premium" onClick ="GetSelectedItem(this, 3)">Premium
+							<input type = "radio" Name = "r1" Value = "Excelium" onClick ="GetSelectedItem(this, 3)">Excelium
+						</form>
+						<div id="output3"></div>
+						<br>
+						<button class="btn btn-success" type="submit" onclick="getInputValue(3)">SUBMIT</button>
+						<br><br>
+					</div>
+				</div>
 			</div>
 			<div id="hybrid" class="building_type" >
 				hybrid form
@@ -556,12 +602,11 @@
 			function getInputValue(x){
 				// Selecting the input element and get its value
 
-				// Displaying the value
-				// Calculate overall # of Appartements by Floor divided by 6 to obtain the number of Elevator cages required
-				// EVERY 20 FLOORS
-
+				
 				switch(x){
 					// 1 for the RESIDENTIAL DIV || NUMBER OF CAGE REQUIRED
+					// Calculate overall # of Appartements by Floor divided by 6 to obtain the number of Elevator cages required
+					// EVERY 20 FLOORS
 					case 1:
 						resiAppart = document.getElementById("resi:appart").value;
 						alert(resiAppart);
@@ -582,8 +627,10 @@
 						cageNum = comCageNum;
 						answerCage.innerHTML = cageNum;
 						break;
+					case 3:
+						
 				}
-								
+				// Displaying the value				
 				// ELEVATORCOST = PRICETYPE * NUM ELEVATORS
 					resiElevatorPrice = (+servicePrice * +cageNum);
 					answerServicePricetotal.innerHTML = resiElevatorPrice;
