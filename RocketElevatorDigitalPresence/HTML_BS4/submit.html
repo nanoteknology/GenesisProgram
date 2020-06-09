@@ -247,23 +247,12 @@
 						</form>
 						
 						<div id="output"></div>
-						<button type="button" onclick="getInputValue();">SUBMIT</button>
-						<!-- TEST-->
-						<!--
-						<p>Type of Services:</p>
-						<input type="radio" id="service1" name="serviceType" value="Standard">
-						<label for="standard">Standard</label><br>
-						<input type="radio" id="service2" name="serviceType" value="Premium">
-						<label for="premium">Premium</label><br>
-						<input type="radio" id="service3" name="serviceType" value="Excelium">
-						<label for="excelium">Excelium</label>
-						<br>  
-						<br><br>
-						
 						<br>
-						-->
+						<button class="btn btn-success" type="submit" onclick="getInputValue()">SUBMIT</button>
+						<br><br>
 					</div>
 				</div>
+				
 			</div>
 <!-- DIV FOR COMMERCIAL SECTION-->
 			<div id="commercial" class="building_type" >
@@ -310,10 +299,13 @@
 							<input type = "radio" Name = "r1" Value = "Excelium" onClick ="GetSelectedItem(this)">Excelium
 						</form>
 						<div id="output"></div>
-						<br><br>
+						<br>
 						<button class="btn btn-success" type="submit" onclick="getInputValue()">SUBMIT</button>
 						<br><br>
+
 					</div>
+				</div>
+				
 				</div>
 
 			</div>
@@ -323,39 +315,37 @@
 			 <div id="hybrid" class="building_type" >
 				hybrid form
 			 </div>
-
-			 <!-- OUTPUT ANSWERS-->
 			 <div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-			<!-- THE ANSWER BOX-->
 					<div class="box">
-			<!-- THE ANSWER Elevator Cages-->
+						<!-- THE ANSWER Elevator Cages-->
 						<div class="log"><strong>Number of Cage Elevators required: </strong>				
 							<div id="answerCage" style="float:right"></div>	
 						</div>
-			<!-- THE ANSWER Service Type-->
+						<!-- THE ANSWER Service Type-->
 						<div class="log"><strong>Type of Service:  </strong>				
 							<div id="answerServiceType" style="float:right"></div>	
 						</div>
-			<!-- SERVICE SERVICE COST TYPE-->
+						<!-- SERVICE SERVICE COST TYPE-->
 						<div class="log"><strong>Price for the selected service (per elevator): </strong>				
 							<div id="answerServicePrice" style="float:right"></div>	
 						</div>
-			<!-- SERVICE SERVICE COST TOTAL TYPE-->
+						<!-- SERVICE SERVICE COST TOTAL TYPE-->
 						<div class="log"><strong>Elevators Price: </strong>				
 							<div id="answerServicePricetotal" style="float:right"></div>	
 						</div>
-			<!-- SERVICE INSTALLATION FEES TYPE-->
+						<!-- SERVICE INSTALLATION FEES TYPE-->
 						<div class="log"><strong>Installation Fees: </strong>				
 							<div id="answerInstallationFees" style="float:right"></div>	
 						</div>
-				<!-- INSTALLATION COST-->
+						<!-- INSTALLATION COST-->
 						<div class="log"><strong>Installation Price (with %fees) </strong>				
 							<div id="answerInstallationCost" style="float:right"></div>	
 						</div>
 					</div>
 				</div>
+			
 			</div>
 			
 			<!-- FOOTER -->
@@ -525,7 +515,7 @@
 						installationCostPer = 16;
 						answerServicePrice.innerHTML = servicePrice;
 					}
-					if(cageNum === 0){ 
+					if(cageNum === 0 && comCageNum === 0){ 
 						// MEANS NO VALUE HAS BEEN DETERMINED FOR THE CAGE NUMBER YET
 						// THE SUBMIT BUTTON CLICK FUNCTION MUST RUN ONCE BEFORE
 						return;
