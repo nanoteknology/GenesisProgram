@@ -580,7 +580,7 @@
 						var resiAppart = document.getElementById("resi:appart").value;
 						var resiFloor = document.getElementById("resi:floor").value;
 						var resiBasement = document.getElementById("resi:basement").value; // Not Used
-						// Calculate average # of Appartements by Floor divided by 6 to obtain the number of Elevator cages required
+						// Calculate average # of Appartments by Floor divided by 6 to obtain the number of Elevator cages required
 						var cageNeeded = Math.ceil((+resiAppart / +resiFloor) / 6);
 						// Need to add a new column every 20 floor using a multiplicator
 						var resiColMultiplicator = Math.ceil(+resiFloor / 20);
